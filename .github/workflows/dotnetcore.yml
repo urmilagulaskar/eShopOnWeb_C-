@@ -34,5 +34,5 @@ jobs:
         run: |
           dotnet tool install --global dotnet-sonarscanner 
           dotnet sonarscanner begin /k:"urmilagulaskar_eShopOnWeb_C-" /o:"personal-org-one" 
-          dotnet build <path to solution.sln>
+          dotnet build .
           dotnet sonarscanner end 
