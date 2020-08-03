@@ -33,7 +33,6 @@ jobs:
       - name: Checking MSBuild
         run: |
           dotnet tool install --global dotnet-sonarscanner 
-          SonarScanner.MSBuild.exe begin -k:"urmilagulaskar_eShopOnWeb_C-" 
           dotnet sonarscanner begin /k:"urmilagulaskar_eShopOnWeb_C-" /o:"personal-org-one" /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
           dotnet build <path to solution.sln>
           dotnet sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
