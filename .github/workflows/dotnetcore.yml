@@ -4,7 +4,6 @@ on: [push]
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
@@ -17,3 +16,15 @@ jobs:
       run: dotnet build ./eShopOnWeb.sln --configuration Release
     - name: Test with dotnet
       run: dotnet test ./eShopOnWeb.sln --configuration Release
+    
+  sonar_scanner:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code for scanning
+        uses: actions/checkout@v2
+      - name: Analyze with Sonar Cloud
+        uses: sonarsource/sonarcloud-github-action@master
+        env:
+          GITHUB_TOKEN:  ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN:  ${{ secrets.SONAR_TOKEN }}
